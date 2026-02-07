@@ -5,61 +5,51 @@ import ExploreItemSkeleton from "../UI/ExploreItemSkeleton";
 import CountdownTimer from "./CountdownTimer";
 
 const ExploreItems = () => {
-  const [items, setItems] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(8);
+  const [selectedFilter, setSelectedFilter] = useState("");
 
-  useEffect(() => {
-    async function getItems() {
-      try {
-        const { data } = await axios.get(
-          "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore",
-        );
+  async function fetchItems(filter = "") {
+    try {
+      setLoading(true);
 
-        setItems(data);
-        setDisplayItems(data);
-        console.log(data)
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
+      const url = filter
+        ? `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
+        : `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`;
+
+      const { data } = await axios.get(url);
+
+      setDisplayItems(data);
+      setVisibleCount(8);
+
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
-
-    getItems();
-  }, []);
+  }
 
   function loadMore() {
     setVisibleCount((prev) => prev + 4);
   }
 
-  function sortItems(filter) {
-    let sorted = [...items];
 
-    if (filter === "price_low_to_high") {
-      sorted.sort((a, b) => a.price - b.price);
-    }
-
-    if (filter === "price_high_to_low") {
-      sorted.sort((a, b) => b.price - a.price);
-    }
-
-    if (filter === "likes_high_to_low") {
-      sorted.sort((a, b) => b.likes - a.likes);
-    }
-
-    setDisplayItems(sorted);
-    setVisibleCount(8);
-  }
+  useEffect(() => {
+    fetchItems();
+  }, []);
 
   return (
     <>
       <div>
         <select
           id="filter-items"
-          defaultValue=""
-          onChange={(e) => sortItems(e.target.value)}
+          value={selectedFilter}
+          onChange={(e) => {
+            const filter = e.target.value;
+            setSelectedFilter(filter);
+            fetchItems(filter);
+          }}
         >
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
@@ -73,7 +63,6 @@ const ExploreItems = () => {
               <div
                 key={index}
                 className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-                style={{ display: "block", backgroundSize: "cover" }}
               >
                 {" "}
                 <ExploreItemSkeleton />
