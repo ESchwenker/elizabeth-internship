@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import AuthorSkeleton from "../UI/AuthorSkeleton";
 
 const AuthorItems = ({ items, authorImage, loading }) => {
+  console.log(items)
 
   return (
     <div className="de_tab_content">
@@ -15,7 +16,7 @@ const AuthorItems = ({ items, authorImage, loading }) => {
               ))
             : items.map((item) => (
                 <div
-                  key={item.id}
+                  key={item.nftId}
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                 >
                   <div className="nft__item">
@@ -26,7 +27,7 @@ const AuthorItems = ({ items, authorImage, loading }) => {
                     </div>
 
                     <div className="nft__item_wrap">
-                      <Link to={`/item-details/${item.id}`}>
+                      <Link to={`/item-details/${item.nftId}`}>
                         <img
                           src={item.nftImage}
                           className="lazy nft__item_preview"
@@ -36,7 +37,7 @@ const AuthorItems = ({ items, authorImage, loading }) => {
                     </div>
 
                     <div className="nft__item_info">
-                      <Link to={`/item-details/${item.id}`}>
+                      <Link to={`/item-details/${item.nftId}`}>
                         <h4>{item.title}</h4>
                       </Link>
 
