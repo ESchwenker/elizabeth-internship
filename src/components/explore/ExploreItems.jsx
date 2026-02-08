@@ -20,6 +20,12 @@ const ExploreItems = () => {
 
       const { data } = await axios.get(url);
 
+      console.log("Explore API Data:", data);
+      console.log(
+        "Author IDs:",
+        data.map((item) => item.authorId)
+      );
+
       setDisplayItems(data);
       setVisibleCount(8);
 
@@ -69,14 +75,14 @@ const ExploreItems = () => {
               </div>
             ))
           : displayItems.slice(0, visibleCount).map((item) => (
-              <div
+            <div
                 key={item.id}
                 className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
               >
                 <div className="nft__item">
                   <div className="author_list_pp">
                     <Link
-                      to="/author"
+                      to={`/author/${item.authorId}`}
                       data-bs-toggle="tooltip"
                       data-bs-placement="top"
                     >
