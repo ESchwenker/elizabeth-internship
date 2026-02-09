@@ -63,7 +63,7 @@ const ExploreItems = () => {
           <option value="likes_high_to_low">Most liked</option>
         </select>
       </div>
-      <div className="row">
+      <div data-aos="fade-up" className="row">
         {loading
           ? new Array(visibleCount).fill(0).map((_, index) => (
               <div

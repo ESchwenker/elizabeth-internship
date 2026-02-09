@@ -69,7 +69,7 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="carousel-wrapper">
+          <div data-aos="fade-up" className="carousel-wrapper">
             <button className="carousel-arrow left"
               onClick={() => slider.current?.prev()}>❮</button>
             <div ref={sliderRef} className="keen-slider">
