@@ -6,8 +6,20 @@ import ItemDetails from "./pages/ItemDetails";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 function App() {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 2500, // animation speed
+      once: true,     // animation only plays once
+    });
+  }, []);
+
+
   return (
     <Router>
       <ScrollToTop />

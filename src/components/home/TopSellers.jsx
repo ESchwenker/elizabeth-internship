@@ -36,7 +36,7 @@ const TopSellers = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <div className="col-md-12">
+          <div data-aos="fade-up" className="col-md-12">
             <ol className="author_list">
               {loading
                 ? new Array(12)
