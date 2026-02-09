@@ -101,13 +101,13 @@ const ExploreItems = () => {
                         <button>Buy Now</button>
                         <div className="nft__item_share">
                           <h4>Share</h4>
-                          <a href="/explore" target="_blank" rel="noreferrer">
+                          <a href="/home" target="_blank" rel="noreferrer">
                             <i className="fa fa-facebook fa-lg"></i>
                           </a>
-                          <a href="/explore" target="_blank" rel="noreferrer">
+                          <a href="/home" target="_blank" rel="noreferrer">
                             <i className="fa fa-twitter fa-lg"></i>
                           </a>
-                          <a href="/explore">
+                          <a href="/home">
                             <i className="fa fa-envelope fa-lg"></i>
                           </a>
                         </div>
