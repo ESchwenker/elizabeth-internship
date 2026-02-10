@@ -81,7 +81,7 @@ const Author = () => {
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <section
-          data-aos="flip-left"
+          data-aos="fade-down"
           id="profile_banner"
           className="text-light"
           style={{ background: `url(${AuthorBanner}) top` }}
